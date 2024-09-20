@@ -105,39 +105,39 @@ class CourseMaterial(models.Model):
     def __str__(self):
         return self.m_title
 
-# class Cart(models.Model):
-#     s_user_name = models.ForeignKey(Student, on_delete=models.CASCADE)
-#     order_id = models.AutoField(primary_key=True)
+class Cart(models.Model):
+    s_user_name = models.ForeignKey(Student, on_delete=models.CASCADE)
+    order_id = models.AutoField(primary_key=True)
     
-#     def __str__(self):
-#         return self.order_id
+    def __str__(self):
+        return self.order_id
     
-# class Digital_Wallet(models.Model):
-#     s_user_name = models.ForeignKey(Student, on_delete=models.CASCADE)
-#     card_name = models.CharField(max_length=100)
-#     card_no = models.IntegerField()
-#     exp_date = models.DateField()
-#     cvc = models.IntegerField()
-#     c_balance = models.FloatField(default=0.00)
+class Digital_Wallet(models.Model):
+    s_user_name = models.ForeignKey(Student, on_delete=models.CASCADE)
+    card_name = models.CharField(max_length=100)
+    card_no = models.IntegerField()
+    exp_date = models.DateField()
+    cvc = models.IntegerField()
+    c_balance = models.FloatField(default=0.00)
     
-#     def __str__(self):
-#         return self.card_name
+    def __str__(self):
+        return self.card_name
     
-# class Transaction(models.Model):
-#     order_id = models.ForeignKey(Cart, on_delete=models.CASCADE)
-#     course_id = models.ForeignKey(Course, on_delete=models.CASCADE)
-#     t_id = models.AutoField(primary_key=True)
-#     t_date = models.DateField(auto_now_add=True)
+class Transaction(models.Model):
+    order_id = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    course_id = models.ForeignKey(Course, on_delete=models.CASCADE)
+    t_id = models.AutoField(primary_key=True)
+    t_date = models.DateField(auto_now_add=True)
     
-#     def __str__(self):
-#         return self.t_id
+    def __str__(self):
+        return self.t_id
     
-# class Enroll(models.Model):
-#     s_user_name = models.ForeignKey(Student, on_delete=models.CASCADE)
-#     course_id = models.ForeignKey(Course, on_delete=models.CASCADE)
-#     order_id = models.ForeignKey(Cart, on_delete=models.CASCADE)
-#     rating_no = models.IntegerField()
-#     description = models.CharField(max_length=500)
+class Enroll(models.Model):
+    s_user_name = models.ForeignKey(Student, on_delete=models.CASCADE)
+    course_id = models.ForeignKey(Course, on_delete=models.CASCADE)
+    order_id = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    rating_no = models.IntegerField()
+    description = models.CharField(max_length=500)
     
-#     def __str__(self):
-#         return f"{self.s_user_name} {self.course_id}"
+    def __str__(self):
+        return f"{self.s_user_name} {self.course_id}"
