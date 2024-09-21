@@ -13,4 +13,7 @@ urlpatterns = [
     path("student/<slug:username>/", views.student, name="student-dashboard-codextr"),
     path("instructor/<slug:username>/", views.instructor, name="instructor-dashboard-codextr"),
     path("instructor/<slug:username>/create-course/", views.create_course, name="create-course-codextr"),
+    path("instructor/<slug:username>/edit-course/", views.edit_course, name="edit-course-codextr"),
+    path("instructor/<slug:username>/edit-course/upload-content/<slug:course_id>/", views.upload_content, name="upload-content-codextr"),
+    path("instructor/<slug:username>/edit-course/delete-course/<slug:course_id>/", views.delete_course, name="delete-course-codextr")
 ]

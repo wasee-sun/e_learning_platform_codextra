@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'codextr/edit-course.css' %}">
+{% endblock %}
+
+{% block content%}
+<div class="container">
+    {% for course in courses %}
+        <div class="course">
+            <div class="image">
+                <img src="{{course.course_img.url}}" alt="{{course.course_name}}">
+            </div>
+            <div class="info">
+                <h3>{{course.course_name}}</h3>
+                <p>{{course.description}}</p>
+                <p>Created By: {{user.f_name}} {{user.l_name}}</p>
+                {% comment %} <div class="rating">
+                    <span class="stars">★★★★★</span>
+                    <span class="count">(323,635)</span>
+                </div>
+                <p>56.5 total hours. 592 lectures. All Levels</p>
+                <p>Bestseller</p> {% endcomment %}
+                <span class="price">{{course.price}}$</span>
+                <div class="course-actions">
+                    <button class="btn-edit" type="submit"><a href="{% url 'upload-content-codextr' user.username course.course_id%}" style="color: white; text-decoration: none;">Upload Content</a></button>
+                    <button class="btn-edit" type="submit">Edit Content</button>
+                    <button class="btn-delete" type="submit" onclick="showDeleteModal('{{ course.course_id }}')"><a href="{% url 'delete-course-codextr' user.username course.course_id%}" style="color: white; text-decoration: none;">Delete Course</a></button>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'codextr/edit-course.js' %}"></script>
+{% endblock %}
+

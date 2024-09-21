@@ -132,3 +132,8 @@ font-size: 16px;
 .create-btn:hover {
 background-color: #4169e1;
 }
+
+#new-category-group {
+    display: none;
+  }
+  

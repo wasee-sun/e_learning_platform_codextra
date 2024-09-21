@@ -2,7 +2,6 @@
 {% load static %}
 
 {% block title %}
-
 {% endblock %}
 
 {% block styles %}
@@ -10,74 +9,8 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
-  <div class="header">
-    <input type="text" class="search-bar" placeholder="Search">
-    <div class="header-buttons">
-      <div class="header-button" onclick="alert('Platfrom name')">Platfrom name</div>
-      <div class="header-button" onclick="alert('User')">User</div>
-    </div>
-  </div>
 
-  <h2>Dashboard</h2>
-
-  <h3>Courses</h3>
-  <div class="courses">
-    <div class="course">
-      <div class="course-thumbnail"></div>
-      <div class="course-name">Course name</div>
-    </div>
-    <div class="course">
-      <div class="course-thumbnail"></div>
-      <div class="course-name">Course name</div>
-    </div>
-    <div class="course">
-      <div class="course-thumbnail"></div>
-      <div class="course-name">Course name</div>
-    </div>
-  </div>
-
-  <h3>Instructor rating</h3>
-  <div class="instructor-rating">
-    <div class="instructor">
-      <div class="instructor-name">
-        <div class="instructor-rating-circle"></div>
-        <span>Name Rating</span>
-      </div>
-      <div class="instructor-description">Description</div>
-    </div>
-    <div class="instructor">
-      <div class="instructor-name">
-        <div class="instructor-rating-circle"></div>
-        <span>Name Rating</span>
-      </div>
-      <div class="instructor-description">Description</div>
-    </div>
-    <div class="instructor">
-      <div class="instructor-name">
-        <div class="instructor-rating-circle"></div>
-        <span>Name Rating</span>
-      </div>
-      <div class="instructor-description">Description</div>
-    </div>
-  </div>
-
-  <div class="footer">
-    <div class="footer-links">
-      <span onclick="alert('contact us about us terms and conditions')">contact us about us terms and conditions</span>
-    </div>
-    <div class="footer-links">
-      <span onclick="alert('Platfrom name')">Platfrom name</span>
-    </div>
-    <div class="footer-links">
-      <span onclick="alert('follow us icons')">follow us icons</span>
-    </div>
-    <div class="footer-copyright">
-      © 2024 Udemy, Inc.
-    </div>
-  </div>
-</div>
-{% end block %}
+{% endblock %}
 
 {% block scripts %}
 <script src="{% static 'codextr/course-upload.js' %}"></script>
