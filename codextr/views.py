@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 import codextr.models as models
 from .forms import SignUpForm
-from django.contrib.auth import authenticate, login
 from django.contrib import messages
+from django.core.exceptions import ValidationError
+from django.contrib.auth.password_validation import validate_password
 
 # Create your views here.
 def home(request):
@@ -52,40 +53,92 @@ def course_material(request, slug1, slug2):
 def terms_conditions(request):
     return render(request, 'codextr/terms_conditions.html')
 
+
 def login_view(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        
+        try:
+            user = models.User.objects.get(username=username)
+            if user.login_check(password) or user.check_password(password):
+                # Check if user is a Student or Instructor
+                if hasattr(user, 'student'):
+                    return redirect('student-dashboard-codextr', username=user.username)  # Replace with your student dashboard URL
+                elif hasattr(user, 'instructor'):
+                    return redirect('instructor-dashboard-codextr', username=user.username)  # Replace with your instructor dashboard URL
+            else:
+                messages.error(request, "Invalid credentials.")
+        except models.User.DoesNotExist:
+            messages.error(request, "Invalid credentials.")
+            
     return render(request, 'codextr/login.html')
 
-# def login_view(request):
-#     if request.method == 'POST':
-#         username = request.POST['username']
-#         password = request.POST['password']
-        
-#         user = authenticate(username=username, password=password)
-        
-#         if user is not None:
-#             login(request, user)
-#             if hasattr(user, 'student'):
-#                 return redirect('student-dashboard-codextra')  
-#             elif hasattr(user, 'instructor'):
-#                 return redirect('instructor_dashboard-codextra')  
-#         else:
-#             return render(request, 'login.html', {'error': 'Invalid credentials'})
-    
-#     return render(request, 'login.html')
+def student(request, username):
+    user = models.User.objects.get(username=username)
+    enrolls = models.Enroll.objects.filter(s_user_name=user.username)
+    courses = []
+    for enroll in enrolls:
+        courses.append(models.Course.objects.get(course_name=enroll.course_id))
+    return render(request, 'codextr/student-dashboard.html', {
+        "user": user,
+        "courses": courses
+    })
+
+def instructor(request, username):
+    return render(request, 'codextr/instructor-dashboard.html')
 
 def register_user(request):
-    if request.method == "POST":
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            models.User.save()
-            # #Authenticate
-            # username = form.cleaned_data["username"]
-            # password = form.cleaned_data["password1"]
-            # user = authenticate(request, username=username, password=password)
-            # login(request, user)
-            # messages.success(request, "You are successfully registered in")
-            return redirect("home-codextr")
-    else:
-        form = SignUpForm()
-    
-    return render(request, "codextr/signup.html", {"form": form})
+    if request.method == 'POST':
+        username = request.POST['username']
+        f_name = request.POST['f_name']
+        l_name = request.POST['l_name']
+        email = request.POST['email']
+        password1 = request.POST['password1']
+        password2 = request.POST['password2']
+        role = request.POST['role']
+        
+        if models.User.objects.filter(username=username).exists():
+            messages.error(request, "Username already exists.")
+            return redirect('signup-codextr')
+
+        # Validate that passwords match
+        if password1 != password2:
+            messages.error(request, "Passwords do not match.")
+            return redirect('signup-codextr')
+
+        # Create a new user (Student or Instructor)
+        if role == 'student':
+            user = models.Student(
+                username=username,
+                f_name=f_name,
+                l_name=l_name,
+                email=email,
+                password=password1
+            )
+        elif role == 'teacher':
+            user = models.Instructor(
+                username=username,
+                f_name=f_name,
+                l_name=l_name,
+                email=email,
+                password=password1
+            )
+        else:
+            messages.error(request, "Invalid role selected.")
+            return redirect('signup-codextr')
+        
+        try:
+            # Validate the password with Django's built-in validators
+            validate_password(password1, user)
+            user.set_password(password1)
+            user.save()
+            messages.success(request, "Account created successfully.")
+            return redirect('login-codextr')
+
+        except ValidationError as e:
+            messages.error(request, e.messages)
+            return redirect('signup-codextr')
+
+
+    return render(request, 'codextr/signup.html')

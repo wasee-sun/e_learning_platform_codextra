@@ -6,70 +6,71 @@ Signup
 {% endblock %}
 
 {% block styles %}
-<link rel="stylesheet" href="{% static 'codextr/signup.css' %}">
+<link rel="stylesheet" href="{% static 'codextr/login-signup.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class = "col-md-6 offset-md-3">
-    <h1> Register </h1>
-    <br>
-    <form method="POST" action="">
-        {% csrf_token %}
-        <p>
-            {{form.username}}
-            <span class="form-text text-muted">
-                <small>Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</small>
-            </span>
-        </p>
-        <p>{{form.f_name}}</p>
-        <p>{{form.l_name}}</p>
-        <p>{{form.email}}</p>
-        <p>{{form.password1}}</p>
-        <ul class="form-text text-muted small">
-            <li>Your password can\'t be too similar to your other personal information.</li>
-            <li>Your password must contain at least 8 characters.</li>
-            <li>Your password can\'t be a commonly used password.</li>
-            <li>Your password can\'t be entirely numeric.</li>
-        </ul>
-        <p>
-            {{form.password2}}
-            <span class="form-text text-muted">
-                <small>Enter the same password as before, for verification.</small>
-            </span>
-        </p>
-        <button type="submit" class="btn btn-primary">Register</button>
-
-    </form>
+<div class="login-container">
+    <!-- Platform Name -->
+    <div class="platform-name">
+        <h1>CodeXTR</h1>
+    </div>
+    <div class = "col-md-6 offset-md-3">
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div class="mb-3">
+                <input type="text" class="form-control" 
+                name="username" placeholder="Username" required>
+                <span class="form-text text-muted">
+                    <small>Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</small>
+                </span>
+            </div>
+            <div class="mb-3">
+                <input type="text" class="form-control" 
+                name="f_name" placeholder="First Name" required>
+            </div>
+            <div class="mb-3">
+                <input type="text" class="form-control" 
+                name="l_name" placeholder="Last Name" required>
+            </div>
+            <div class="mb-3">
+                <input type="email" class="form-control" 
+                name="email" placeholder="Email" required> 
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Account for:</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" 
+                    name="role" id="student" value="student" required>
+                    <label class="form-check-label" for="student">Student</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" 
+                    name="role" id="teacher" value="teacher" required>
+                    <label class="form-check-label" for="teacher">Teacher</label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <input type="password" class="form-control" 
+                name="password1" placeholder="Password" required>
+            </div>
+            <ul class="form-text text-muted small">
+                <li>Your password can\'t be too similar to your other personal information.</li>
+                <li>Your password must contain at least 8 characters.</li>
+                <li>Your password can\'t be a commonly used password.</li>
+                <li>Your password can\'t be entirely numeric.</li>
+            </ul>
+            <div class="mb-3">
+                <input type="password" class="form-control" 
+                name="password2" placeholder="Confirm Password" required>
+                <span class="form-text text-muted">
+                    <small>Enter the same password as before, for verification.</small>
+                </span>
+            </div>
+            <div class="login-button">
+                <button type="submit">Register</button>
+            </div>
+        </form>
+    </div>
 </div>
-{% comment %} <div class="form-box">
-    <form>
-        <h1>Platform name</h1>
-        <div class="input-group">
-            <label for="first-name">First name</label>
-            <input type="text" id="first-name" name="first-name">
-        </div>
-        <div class="input-group">
-            <label for="last-name">Last name</label>
-            <input type="text" id="last-name" name="last-name">
-        </div>
-        <div class="checkout-group">
-            <label>Account type</label>
-            <label><input type="radio" id="userChoice1" name="user" value="student"> Student
-            <input type="radio" id="userChoice1" name="user" value="teacher"> Instructor</label>
-        </div>
-        <div class="input-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email">
-        </div>
-        <div class="input-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password">
-        </div>
-        <div class="input-group">
-            <label for="confirm-password">Confirm Password</label>
-            <input type="password" id="confirm-password" name="confirm-password">
-        </div>
-        <button class="signup-button" type="submit">Sign up</button>
-    </form>
-</div> {% endcomment %}
 {% endblock %}

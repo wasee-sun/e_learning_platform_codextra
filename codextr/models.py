@@ -17,6 +17,10 @@ class User(models.Model):
     def check_password(self, raw_password):
         """Verify if the provided password matches the stored hashed password."""
         return check_password(raw_password, self.password)
+    
+    def login_check(self, raw_password):
+        """Verify if the provided password matches the stored hashed password."""
+        return raw_password == self.password
 
     def __str__(self):
         return f'{self.f_name} {self.l_name} ({self.username})'
@@ -110,7 +114,7 @@ class Cart(models.Model):
     order_id = models.AutoField(primary_key=True)
     
     def __str__(self):
-        return self.order_id
+        return str(f"{self.s_user_name} {self.order_id}")
     
 class Digital_Wallet(models.Model):
     s_user_name = models.ForeignKey(Student, on_delete=models.CASCADE)
@@ -130,14 +134,14 @@ class Transaction(models.Model):
     t_date = models.DateField(auto_now_add=True)
     
     def __str__(self):
-        return self.t_id
+        return str(f"{self.order_id} {self.course_id} {self.t_id}")
     
 class Enroll(models.Model):
     s_user_name = models.ForeignKey(Student, on_delete=models.CASCADE)
     course_id = models.ForeignKey(Course, on_delete=models.CASCADE)
     order_id = models.ForeignKey(Cart, on_delete=models.CASCADE)
-    rating_no = models.IntegerField()
-    description = models.CharField(max_length=500)
+    rating_no = models.IntegerField(null=True, blank=True)
+    description = models.CharField(max_length=500, blank=True, null=True)
     
     def __str__(self):
         return f"{self.s_user_name} {self.course_id}"

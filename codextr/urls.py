@@ -10,4 +10,6 @@ urlpatterns = [
     path("terms-conditions/", views.terms_conditions, name="terms-conditions-codextr"),
     path("login/", views.login_view, name="login-codextr"),
     path("signup/", views.register_user, name="signup-codextr"),
+    path("student/<slug:username>/", views.student, name="student-dashboard-codextr"),
+    path("instructor/<slug:username>/", views.instructor, name="instructor-dashboard-codextr"),
 ]

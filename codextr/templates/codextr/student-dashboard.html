@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+CodeXTR
+{% endblock %}
+
+{% block content %}
+  <div class="carousel">
+
+    <h2>Popular Courses</h2>
+    <p>Learn the most relevant skills with business, creative, and tech courses - dozens of courses added each week.</p>
+    <div class="course-container">
+      <button class="nav-btn left-btn" onclick="scrollLeft()">&#10094;</button>
+
+      <div class="course-list">
+        <div class="course">
+          <img src="electronics-foundation.jpg" alt="Electronics Foundations: Fundamentals">
+          <h3>Electronics Foundations: Fundamentals</h3>
+          <p>1h 17m</p>
+          <p>14,584 viewers</p>
+        </div>
+        <div class="course">
+          <img src="excel-lookup.jpg" alt="Excel: Lookup Functions in Depth">
+          <h3>Excel: Lookup Functions in Depth</h3>
+          <p>1h 8m</p>
+          <p>1,173 viewers</p>
+        </div>
+        <div class="course">
+          <img src="excel-data.jpg" alt="Excel Data Visualization: Mastering Charts">
+          <h3>Excel Data Visualization: Mastering 20+ Charts</h3>
+          <p>2h 23m</p>
+          <p>6,485 viewers</p>
+        </div>
+        <div class="course">
+          <img src="html-essential.jpg" alt="HTML Essential Training">
+          <h3>HTML Essential Training</h3>
+          <p>2h 24m</p>
+          <p>12,876 viewers</p>
+        </div>
+      </div>
+
+      <button class="nav-btn right-btn" onclick="scrollRight()">&#10095;</button>
+    </div>
+    <button class="start-btn">Start my free month</button>
+  </div>
+{% endblock %}
+
