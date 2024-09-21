@@ -1,0 +1,112 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.main-header {
+    background-color: #0073b1;
+    color: white;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.main-header h1 {
+    font-size: 2.5em;
+    margin: 0;
+}
+
+.main-header p {
+    font-size: 1.2em;
+}
+
+.about, .values, .team {
+    background-color: #ffffff;
+    padding: 60px 0;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.about h2, .values h2, .team h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.about p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    width: 75%;
+    margin: 0 auto;
+}
+
+.values-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.value-card {
+    background-color: #eef3f8;
+    padding: 20px;
+    margin: 10px;
+    width: 250px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.value-card h3 {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+
+.value-card p {
+    font-size: 1em;
+    color: #555;
+}
+
+.team-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.team-member {
+    text-align: center;
+    margin: 20px;
+}
+
+.team-member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+.team-member h3 {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.team-member p {
+    font-size: 1em;
+    color: #777;
+}
+
+.main-footer {
+    background-color: #0073b1;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.main-footer p {
+    margin: 0;
+    font-size: 0.9em;
+}

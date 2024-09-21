@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+CodeXTR
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'codextr/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="card text-bg-dark">
+    <img src="../../media/images/codextrbanner.png" class="card-img" alt="...">
+</div>
+<br>
+<section class="popular-courses">
+  <h2>Popular Courses</h2>
+  <p>Learn the most relevant skills with business, creative, and tech courses - dozens of courses added each week.</p>
+  <div class="courses-container">
+      {% for course in courses %}
+        {% include "codextr/course-card.html" with course=course %}
+      {% endfor %}
+  </div>
+</section>
+<br>
+<section class="role-guides">
+    <h2>Categories</h2>
+    <div class="roles-container">
+        {% for category in categories %}
+            <div class="role-card">{{ category.cat_name }}</div>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}

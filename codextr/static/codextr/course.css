@@ -1,0 +1,55 @@
+
+
+.course-header {
+    background: white;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    margin: 0.5em 0;
+    color: #333;
+}
+
+.course-details, .purchase-info {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 20%;
+    align-items: center;
+}
+
+.rating, .students, .price {
+    font-weight: bold;
+}
+
+.course-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-btn {
+    width: 100%;
+    padding: 10px;
+    text-align: left;
+    background: #ddd;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.dropdown-content {
+    display: none;
+    background: #f9f9f9;
+    padding: 10px;
+}
+
+.course-section {
+    margin-bottom: 10px;
+}
+
+.arrow {
+    float: right;
+}

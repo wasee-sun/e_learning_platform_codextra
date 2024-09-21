@@ -1,0 +1,47 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block title %}
+{{course_material.m_title}}
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'codextr/course-material.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="material-container">
+    <div class="sidebar">
+        <h2>Contents</h2>
+        {% for section, materials in course_materials.items %} 
+            <div class="menu-item">
+                <button class="dropdown-btn">{{section}}<span class="arrow">▼</span></button>
+                <div class="dropdown-content">
+                    {% for material in materials%}
+                        <p><a href="{% url 'course-material-codextr' course.slug material.slug %}">{{material.m_title}}</a></p>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {% if course_material.m_type == 'video'%}
+        <div class="video-container">
+            <h1>{{course_material.m_title}}</h1>
+            <video controls>
+                <source src="{{course_material.file_loc.url}}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    {% elif course_material.m_type == 'pdf'%}
+        <div class="video-container">
+            <h1>{{course_material.m_title}}</h1>
+            <a href="{{ course_material.file_loc.url }}" download>{{ course_material.slug }}.pdf</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+<script src= {% static "codextr/course-material.js" %}></script>
+{% endblock %}

@@ -1,0 +1,8 @@
+<div class="course-card">
+    <img src="{{ course.course_img.url }}" alt="{{course.course_name}}">
+    <div class="course-info">
+        <h3><a href="{% url 'course-codextr' course.slug %}">{{course.course_name}}</a></h3>
+        <p>{{course.difficulty|title}}</p>
+        <span>{{course.price}}$</span>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{course.course_name}}
+{% endblock %}
+
+{% block styles %}
+<link rel = stylesheet type = "text/css" href = "{% static 'codextr/course.css' %}"/>
+{% endblock %}
+
+
+{% block content %}
+<div class="container" style="display: flex; justify-content: center; align-items: center">
+    <div class="card mb-3" style="max-width: 800px;">
+        <img src="{{course.course_img.url}}" class="card-img-top" alt="...">
+        <div class="card-body">
+        <h1 class="card-title">{{course.course_name}}</h1>
+        <br>
+        <p class="card-text">{{course.description}}</p>
+        <p class="card-text">Difficulty: {{course.difficulty|title}}</p>
+        <p class="card-text">Price: {{course.price}}$</p>
+        <p class="card-text">Created By: {{course.inst_user_name}}</p>
+        <a href="#" class="btn btn-primary">Enroll</a>
+        <h1 class="card-title">Contents</h1>
+    </div>
+    {% for section, materials in course_materials.items %} 
+        <section class="course-section">
+            <button class="dropdown-btn">{{section}}<span class="arrow">▼</span></button>
+            <div class="dropdown-content">
+                {%for material in materials%}
+                <p><a href="{% url 'course-material-codextr' course.slug material.slug %}">{{material.m_title}}</a></p>
+                {% endfor %}
+            </div>
+        </section>
+    {% endfor %}
+    </div>
+</div>
+{% comment %} <header class="course-header">
+    <h1>{{course.course_name}}</h1>
+    <p>{{course.description}}</p>
+    <div class="course-details">
+        <span class="rating">★★★★★ 4.6 (121,930 ratings)</span>
+        <span class="students">192,940 students</span>
+    </div>
+    <div class="purchase-info">
+        <span class="price">$74.99</span>
+        <button class="course-button">Buy Now</button>
+    </div>
+</header> {% endcomment %}
+{% endblock %}
+
+{% block scripts %}
+<script src= {% static 'codextr/course.js' %}></script>
+{% endblock %}
+
+
+    

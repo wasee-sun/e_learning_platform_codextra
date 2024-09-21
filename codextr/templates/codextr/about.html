@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Codextra{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'codextr/about.css' %}">
+{% endblock %}
+
+{% block content %}
+<header class="main-header">
+    <div class="container">
+        <h1>About Codextra</h1>
+        <p>Your gateway to mastering new skills through online learning.</p>
+    </div>
+</header>
+
+<section class="about">
+    <div class="container">
+        <h2>Our Mission</h2>
+        <p>At Codextra, our mission is to empower learners of all backgrounds by providing them with high-quality, accessible, and flexible education. We aim to bridge the skill gap by offering expertly curated courses in a range of subjects, from technology to business and personal development.</p>
+    </div>
+</section>
+
+<section class="values">
+    <div class="container">
+        <h2>Our Values</h2>
+        <div class="values-container">
+            <div class="value-card">
+                <h3>Accessibility</h3>
+                <p>We believe that education should be available to everyone, regardless of their location or background.</p>
+            </div>
+            <div class="value-card">
+                <h3>Quality</h3>
+                <p>Our courses are designed by experts to ensure that learners receive relevant and practical knowledge.</p>
+            </div>
+            <div class="value-card">
+                <h3>Flexibility</h3>
+                <p>We understand that everyone’s learning journey is different, so we provide courses that fit around your schedule.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="team">
+    <div class="container">
+        <h2>Meet the Team</h2>
+        <div class="team-container">
+            <div class="team-member">
+                <img src="team-member1.jpg" alt="Team Member 1">
+                <h3>Jane Doe</h3>
+                <p>Founder & CEO</p>
+            </div>
+            <div class="team-member">
+                <img src="team-member2.jpg" alt="Team Member 2">
+                <h3>John Smith</h3>
+                <p>Lead Instructor</p>
+            </div>
+            <div class="team-member">
+                <img src="team-member3.jpg" alt="Team Member 3">
+                <h3>Alice Johnson</h3>
+                <p>Course Designer</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,52 @@
+
+    <div class="container">
+        <div class="header">
+            <h1>Platform name</h1>
+        </div>
+        <div class="form-container">
+            <form id="courseForm">
+                <label for="courseName">Course name</label>
+                <input type="text" id="courseName" name="courseName" required>
+
+                <label for="description">Description</label>
+                <input type="text" id="description" name="description" required>
+
+                <label for="category">Category</label>
+                <select id="category" name="category" required>
+                    <option value="" disabled selected>Drop down menu</option>
+                    <option value="Technology">Technology</option>
+                    <option value="Science">Science</option>
+                    <option value="Business">Business</option>
+                </select>
+
+                <label for="difficulty">Difficulty level</label>
+                <select id="difficulty" name="difficulty" required>
+                    <option value="" disabled selected>Drop down menu</option>
+                    <option value="Beginner">Beginner</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Advanced">Advanced</option>
+                </select>
+
+                <div class="paid-unpaid">
+                    <label>Paid</label>
+                    <input type="radio" name="paidUnpaid" value="Paid" required>
+                    <label>Unpaid</label>
+                    <input type="radio" name="paidUnpaid" value="Unpaid" required>
+                </div>
+
+                <label for="price">Price</label>
+                <input type="number" id="price" name="price"> $
+
+                <div id="sections">
+                    <div class="section" id="section1">
+                        <label for="section1Name">Section 1 name</label>
+                        <input type="text" id="section1Name" name="section1Name" required>
+                        <button type="button" class="add" onclick="addSection()">+</button>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit">Create course</button>
+            </form>
+        </div>
+    </div>
+

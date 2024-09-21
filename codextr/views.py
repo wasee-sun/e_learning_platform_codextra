@@ -8,16 +8,16 @@ from django.contrib import messages
 def home(request):
     courses = models.Course.objects.all()
     categories = models.Category.objects.all()
-    return render(request, 'codextra/home.html', {
+    return render(request, 'codextr/home.html', {
         "courses": courses,
         "categories": categories
     })
     
 def contact(request):
-    return render(request, 'codextra/contact.html')
+    return render(request, 'codextr/contact.html')
 
 def about(request):
-    return render(request, 'codextra/about.html')
+    return render(request, 'codextr/about.html')
 
 def course(request, slug):
     course = models.Course.objects.get(slug=slug)
@@ -28,7 +28,7 @@ def course(request, slug):
             course_materials_dict[materials.section_name] = [materials]
         else:
             course_materials_dict[materials.section_name].append(materials)
-    return render(request, 'codextra/course.html', {
+    return render(request, 'codextr/course.html', {
         "course" : course,
         "course_materials" : course_materials_dict
     })
@@ -43,17 +43,17 @@ def course_material(request, slug1, slug2):
             course_materials_dict[materials.section_name] = [materials]
         else:
             course_materials_dict[materials.section_name].append(materials)
-    return render(request, "codextra/course-materials.html", {
+    return render(request, "codextr/course-materials.html", {
         "course" : course,
         "course_materials" : course_materials_dict,
         "course_material" : course_material
     })
 
 def terms_conditions(request):
-    return render(request, 'codextra/terms_conditions.html')
+    return render(request, 'codextr/terms_conditions.html')
 
 def login_view(request):
-    return render(request, 'codextra/login.html')
+    return render(request, 'codextr/login.html')
 
 # def login_view(request):
 #     if request.method == 'POST':
@@ -84,8 +84,8 @@ def register_user(request):
             # user = authenticate(request, username=username, password=password)
             # login(request, user)
             # messages.success(request, "You are successfully registered in")
-            return redirect("home-codextra")
+            return redirect("home-codextr")
     else:
         form = SignUpForm()
     
-    return render(request, "codextra/signup.html", {"form": form})
+    return render(request, "codextr/signup.html", {"form": form})
