@@ -86,7 +86,12 @@ def student(request, username):
     })
 
 def instructor(request, username):
-    return render(request, 'codextr/instructor-dashboard.html')
+    user = models.User.objects.get(username=username)
+    courses = models.Course.objects.filter(inst_user_name=user.username)
+    return render(request, 'codextr/instructor-dashboard.html', {
+        "user": user,
+        "courses": courses
+    })
 
 def register_user(request):
     if request.method == 'POST':

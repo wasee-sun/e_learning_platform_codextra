@@ -1,0 +1,111 @@
+body {
+  background-color: rgb(235, 235, 235);
+}
+
+.student-container{
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+  
+.course-container {
+  width: auto;
+  margin: 0 auto;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+p {
+  margin-bottom: 20px;
+}
+
+.course-slider {
+  width: auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.course-list {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  margin: 0 30px;
+  min-width: none;
+  position: relative;
+  justify-content: space-evenly;
+}
+
+.course-list::-webkit-scrollbar {
+  display: none;
+}
+
+.course {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px;
+  flex: 0 0 250px;
+  text-align: left;
+}
+
+.course img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.course h3 {
+  font-size: 1.2em;
+  margin-top: 10px;
+}
+
+.course p {
+  font-size: 0.9em;
+  color: gray;
+}
+
+.course span {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.9em;
+  color: #333;
+}
+
+.nav-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 2em;
+  cursor: pointer;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0 10px;
+}
+
+.left-btn {
+  left: 30px;
+}
+
+.right-btn {
+  right: 30px;
+}
+
+.start-btn {
+  background-color: #0073b1;
+  color: white;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.start-btn:hover {
+  background-color: #005582;
+}
