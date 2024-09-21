@@ -134,16 +134,26 @@ def register_user(request):
             return redirect('signup-codextr')
         
         try:
-            # Validate the password with Django's built-in validators
             validate_password(password1, user)
             user.set_password(password1)
             user.save()
             messages.success(request, "Account created successfully.")
             return redirect('login-codextr')
-
         except ValidationError as e:
             messages.error(request, e.messages)
             return redirect('signup-codextr')
-
-
+        
     return render(request, 'codextr/signup.html')
+
+def create_course(request, username):
+    user = models.User.objects.get(username=username)
+    categories = models.Category.objects.all()
+    difficulty_level = models.Course.DIFFICULTY
+    return render(request, 'codextr/create-course.html', {
+        "user": user,
+        "categories": categories,
+        "difficulty_level": difficulty_level
+    })
+
+def course_upload(request):
+    pass

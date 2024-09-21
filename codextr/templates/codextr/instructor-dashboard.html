@@ -29,7 +29,7 @@
     </div>
     <button class="nav-btn right-btn" onclick="scrollRight()">&#10095;</button>
   </div>
-  <button class="start-btn">Create Course</button>
+  <button class="start-btn"><a href="{% url 'create-course-codextr' user.username %}" style="text-decoration: none; color: white">Create Course</a></button>
 </div>
 </div>
 {% endblock %}
