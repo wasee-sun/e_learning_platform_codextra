@@ -14,37 +14,6 @@ Upload Content
         <div class="header">
             <h1>Upload Content</h1>
         </div>
-        <form id="upload-form" class="upload-form">
-            <div class="form-group">
-                <label for="course_name">Course Name</label>
-                <input type="text" id="course_name" name="course_name" value="{{ course.course_name }}" disabled>
-            </div>
-            <div class="form-group">
-                <label for="section_no">Section No</label>
-                <input type="number" id="section_no" name="section_no" placeholder="Section no" required>
-            </div>
-            <div class="form-group">
-                <label for="section_name">Section Name</label>
-                <input type="text" id="section_name" name="section_name" placeholder="Section name" required>
-            </div>
-            <div class="form-group">
-                <label for="file_upload">Select File</label>
-                <input type="file" id="file_upload" name="file_upload" accept="video/*,application/pdf" required>
-            </div>
-            <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" id="title" name="title" placeholder="Title" required>
-            </div>
-            <div class="form-group">
-                <label for="duration">Duration</label>
-                <input type="text" id="duration" name="duration" placeholder="Duration" required>
-            </div>
-            <button type="submit" class="upload-btn">Upload</button>
-        </form>
-    </div><div class="upload-container">
-        <div class="header">
-            <h1>Upload Content</h1>
-        </div>
         <form id="upload-form" class="upload-form" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-group">
@@ -80,7 +49,7 @@ Upload Content
             </div>
             <div class="form-group">
                 <label for="duration">Duration</label>
-                <input type="text" id="duration" name="duration" placeholder="Duration" required>
+                <input type="number" id="duration" name="duration" placeholder="Duration" value="0.00" min="0" step="0.01">
             </div>
             <button type="submit" class="upload-btn">Upload</button>
         </form>

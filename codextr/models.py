@@ -32,8 +32,8 @@ class Student(User):
         return f"{self.f_name} {self.l_name}"
 
 class Instructor(User):
-    bank_account = models.IntegerField()
-    routing_no = models.IntegerField()
+    bank_account = models.IntegerField(default=0)
+    routing_no = models.IntegerField(default=0)
 
     def __str__(self):
         return f"{self.f_name} {self.l_name}"
@@ -112,6 +112,7 @@ class CourseMaterial(models.Model):
 class Cart(models.Model):
     s_user_name = models.ForeignKey(Student, on_delete=models.CASCADE)
     order_id = models.AutoField(primary_key=True)
+    course_id = models.ForeignKey(Course, on_delete=models.CASCADE)
     
     def __str__(self):
         return str(f"{self.s_user_name} {self.order_id}")
@@ -128,6 +129,7 @@ class Digital_Wallet(models.Model):
         return self.card_name
     
 class Transaction(models.Model):
+    s_user_name = models.ForeignKey(Student, on_delete=models.CASCADE)
     order_id = models.ForeignKey(Cart, on_delete=models.CASCADE)
     course_id = models.ForeignKey(Course, on_delete=models.CASCADE)
     t_id = models.AutoField(primary_key=True)
@@ -140,6 +142,7 @@ class Enroll(models.Model):
     s_user_name = models.ForeignKey(Student, on_delete=models.CASCADE)
     course_id = models.ForeignKey(Course, on_delete=models.CASCADE)
     order_id = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    t_id = models.ForeignKey(Transaction, on_delete=models.CASCADE)
     rating_no = models.IntegerField(null=True, blank=True)
     description = models.CharField(max_length=500, blank=True, null=True)
     

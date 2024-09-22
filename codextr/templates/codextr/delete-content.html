@@ -1,0 +1,80 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block title %}
+Delete Content
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'codextr/delete-content.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'codextr/create-course.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class = "delete-container">
+    <form id="courseForm" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h1 style="text-align: center; padding:20px 20px;">Update Content</h1>
+        <div class="form-group">
+            <label for="courseName">Course Name:</label>
+            <input type="text" id="courseName" name="courseName" value="{{ course.course_name }}" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="4" required>{{ course.description }}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="category">Category:</label>
+            <select id="category" name="category">
+                {% for category in categories %}
+                    <option value="{{ category.cat_name }}">{{ category.cat_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="difficultyLevel">Difficulty Level:</label>
+            <select id="difficultyLevel" name="difficultyLevel" required>
+                {% for level in difficulty_level %}
+                    <option value="{{ level.0 }}">{{ level.1 }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Price: </label>
+            <input type="number" id="price" name="price" value="{{course.price}}" min="0" step="0.01" placeholder="Price" style="display:block">
+        </div>
+        <div class="form-group">
+            <label for="courseImage">Upload Course Image:</label>
+            <input type="file" id="courseImage" name="courseImage" accept="image/*" onchange="previewImage(event)" value="{{course.course_img}}" required>
+        </div>
+        <div class="course-form">
+            <button class="create-btn" id="create-course-btn">Update course</button>
+        </div>
+    </form>
+</div>
+<div class="accordion">
+    <h1 style="text-align: center; padding:20px 20px;">Update Section</h1>
+    {% for section, materials in course_materials.items %} 
+        <div class="accordion-item">
+            <h3 class="accordion-header">{{ section }}</h3>
+            <div class="accordion-content">
+                <ul>
+                    {% for material in materials %}
+                        <li>
+                            <p>{{ material.m_title }}</p>
+                            <button class="delete-btn" type="submit"><a href="{% url 'delete-material-codextr' user.username course.course_id material.id %}" style="color: white; text-decoration: none;">Delete</a></button>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'codextr/delete-content.js' %}"></script>
+<script src="{% static 'codextr/create-course.js' %}"></script>
+{% endblock %}
+
+

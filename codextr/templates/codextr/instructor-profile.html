@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Instructor Profile{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'codextr/s-i-profile.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'codextr/login-signup.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <!-- Platform Name -->
+    <div class="platform-name" style="text-align:center">
+        <h1>Instructor Profile</h1>
+    </div>
+
+    <!-- Profile Update Form -->
+    <div class="col-md-6 offset-md-3">
+        <form method="POST" action="{% url 'update-instructor-profile' user.username %}">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="username">Username:</label>
+                <input class="form-control" type="text" id="username" name="username" value="{{ user.username }}" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="f_name">First Name:</label>
+                <input class="form-control" type="text" id="f_name" name="f_name" value="{{ user.f_name }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="l_name">Last Name:</label>
+                <input class="form-control" type="text" id="l_name" name="l_name" value="{{ user.l_name }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="email">Email:</label>
+                <input class="form-control" type="email" id="email" name="email" value="{{ user.email }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="bank_account">Bank Account:</label>
+                <input class="form-control" type="text" id="bank_account" name="bank_account" value="{{ user.bank_account }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="routing_no">Routing Number:</label>
+                <input class="form-control" type="text" id="routing_no" name="routing_no" value="{{ user.routing_no }}" required>
+            </div>
+            <div class="login-button">
+                <button type="submit" class="btn btn-primary">Update Profile</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'codextr/s-i-profile.js' %}"></script>
+{% endblock %}

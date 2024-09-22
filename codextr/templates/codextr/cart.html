@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Cart
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'codextr/cart.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="cart-container">
+        <h1>Shopping Cart</h1>
+        <div class="cart-content">
+            {% for order_id, course in courses.items %}
+                <div class="cart-item">
+                    <img src="{{course.course_img.url}}" alt="Python Course" class="course-image">
+                    <div class="item-details">
+                        <h2>{{ course.course_name }}</h2>
+                        <p>{{ course.inst_user_name}}</p>
+                        <div class="item-price">
+                            <span class="price">{{ course.price }}</span>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+            <div class="cart-summary">
+                <p>Total: <span class="total-price">{{total_price}}</span></p>
+                <button class="checkout-btn" type="submit"><a href="{% url 'checkout-codextr' user.username%}" style="color: white; text-decoration: none;">Checkout</a></button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'codextr/cart.js' %}"></script>
+{% endblock %}

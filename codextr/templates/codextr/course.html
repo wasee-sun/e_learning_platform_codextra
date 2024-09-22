@@ -13,28 +13,51 @@
 {% block content %}
 <div class="container" style="display: flex; justify-content: center; align-items: center">
     <div class="card mb-3" style="max-width: 800px;">
-        <img src="{{course.course_img.url}}" class="card-img-top" alt="...">
+        <img src="{{ course.course_img.url }}" class="card-img-top" alt="...">
         <div class="card-body">
-        <h1 class="card-title">{{course.course_name}}</h1>
-        <br>
-        <p class="card-text">{{course.description}}</p>
-        <p class="card-text">Difficulty: {{course.difficulty|title}}</p>
-        <p class="card-text">Price: {{course.price}}$</p>
-        <p class="card-text">Created By: {{course.inst_user_name}}</p>
-        <a href="#" class="btn btn-primary">Enroll</a>
-        <h1 class="card-title">Contents</h1>
+            <h1 class="card-title">{{ course.course_name }}</h1>
+            <br>
+            <p class="card-text">{{ course.description }}</p>
+            <p class="card-text">Difficulty: {{ course.difficulty|title }}</p>
+            <p class="card-text">Price: {{ course.price }}$</p>
+            <p class="card-text">Created By: {{ course.inst_user_name }}</p>
+
+            {% if is_instructor %}
+                <!-- Do not show the Enroll button for instructors -->
+            {% else %}
+                {% if is_logged_in %}
+                    {% if is_enrolled %}
+                        <p class="text-success">You are already enrolled in this course.</p>
+                    {% else %}
+                        {% if user.username %}  <!-- Check if username is not empty -->
+                            <a href="{% url 'add-to-cart' user.username course.course_id %}" class="btn btn-primary">Enroll</a>
+                        {% else %}
+                            <p class="text-danger">User not logged in.</p>
+                        {% endif %}
+                    {% endif %}
+                {% else %}
+                    <a href="{% url 'login-codextr' %}" class="btn btn-primary">Enroll (Login Required)</a>
+                {% endif %}
+            {% endif %}
+
+            <h1 class="card-title">Contents</h1>
+        </div>
+        {% for section, materials in course_materials.items %}
+            <section class="course-section">
+                <button class="dropdown-btn">{{ section }}<span class="arrow">▼</span></button>
+                <div class="dropdown-content">
+                    {% for material in materials %}
+                        {% if is_enrolled or is_instructor %}
+                            <p><a href="{% url 'course-material-codextr' course.slug material.slug %}">{{ material.m_title }}</a></p>
+                        {% else %}
+                            <p><span class="text-muted">{{ material.m_title }} (Enroll to access)</span></p>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </section>
+        {% endfor %}
     </div>
-    {% for section, materials in course_materials.items %} 
-        <section class="course-section">
-            <button class="dropdown-btn">{{section}}<span class="arrow">▼</span></button>
-            <div class="dropdown-content">
-                {%for material in materials%}
-                <p><a href="{% url 'course-material-codextr' course.slug material.slug %}">{{material.m_title}}</a></p>
-                {% endfor %}
-            </div>
-        </section>
-    {% endfor %}
-    </div>
+</div>
 </div>
 {% comment %} <header class="course-header">
     <h1>{{course.course_name}}</h1>

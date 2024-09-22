@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block title %}Edit Course{% endblock %}
+
 {% block styles %}
 <link rel="stylesheet" type="text/css" href="{% static 'codextr/edit-course.css' %}">
 {% endblock %}
@@ -25,7 +27,7 @@
                 <span class="price">{{course.price}}$</span>
                 <div class="course-actions">
                     <button class="btn-edit" type="submit"><a href="{% url 'upload-content-codextr' user.username course.course_id%}" style="color: white; text-decoration: none;">Upload Content</a></button>
-                    <button class="btn-edit" type="submit">Edit Content</button>
+                    <button class="btn-edit" type="submit"><a href="{% url 'delete-content-codextr' user.username course.course_id%}" style="color: white; text-decoration: none;">Edit Content</a></button></button>
                     <button class="btn-delete" type="submit" onclick="showDeleteModal('{{ course.course_id }}')"><a href="{% url 'delete-course-codextr' user.username course.course_id%}" style="color: white; text-decoration: none;">Delete Course</a></button>
                 </div>
             </div>

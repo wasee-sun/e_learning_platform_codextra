@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Checkout{% endblock %}
+
+{% block styles%}
+  <link rel="stylesheet" href="{% static 'codextr/checkout.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="checkout-container">
+    <div class="checkout-section">
+      <h2 style="text-align:center">Checkout</h2>
+      <div class="billing-address">
+        <h3 style="text-align:center">Billing address</h3>
+        <label for="country">Country</label>
+        <select id="country">
+          <option value="Bangladesh">Bangladesh</option>
+          </select>
+      </div>
+
+      <div class="payment-method">
+        <h3>Payment method</h3>
+        <div class="card-details">
+          <input type="text" placeholder="Name on card" value="{{ wallet.card_name }}" readonly>
+          <input type="text" placeholder="Card number" value="{{ wallet.card_no }}" readonly>
+          <div class="expiry-cvc">
+            <input type="text" placeholder="MM/YY" value="{{ wallet.exp_date|date:'Y-m-d' }} readonly">
+            <input type="text" placeholder="CVC" value="{{ wallet.cvc }}" readonly>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="summary-section">
+      <h2 style="text-align:center">Summary</h2>
+      <hr>
+      <div class="summary-item">
+        <span>Total:</span>
+        <span>{{total_price}}</span>
+      </div>
+      <form method="POST" action="">
+        {% csrf_token %}
+        <button id="checkout-button" class="checkout-button">Complete Checkout</button>
+      </form>
+      <p>30-Day Money-Back Guarantee</p>
+    </div>
+  </div>
+{% endblock %}

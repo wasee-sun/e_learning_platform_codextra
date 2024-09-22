@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Student Profile{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'codextr/s-i-profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <!-- Platform Name -->
+    <div class="platform-name" style="text-align:center">
+        <h1>Profile</h1>
+    </div>
+
+    <!-- Login Form -->
+    <div class="col-md-6 offset-md-3">
+        <form method="POST" action="{% url 'update-student-profile' user.username %}">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="username">Username:</label>
+                <input class="form-control" type="text" id="username" name="username" value="{{ user.username }}" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="f_name">First Name:</label>
+                <input class="form-control"  type="text" id="f_name" name="f_name" value="{{ user.f_name }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="l_name">Last Name:</label>
+                <input class="form-control" type="text" id="l_name" name="l_name" value="{{ user.l_name }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="email">Email:</label>
+                <input class="form-control" type="email" id="email" name="email" value="{{ user.email }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="card_name">Card Name:</label>
+                <input class="form-control" type="text" id="card_name" name="card_name" value="{{ wallet.card_name }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="card_no">Card Number:</label>
+                <input class="form-control" type="text" id="card_no" name="card_no" value="{{ wallet.card_no }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="exp_date">Expiration Date:</label>
+                <input class="form-control" type="date" id="exp_date" name="exp_date" value="{{ wallet.exp_date|date:'Y-m-d' }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="cvc">CVC:</label>
+                <input class="form-control" type="text" id="cvc" name="cvc" value="{{ wallet.cvc }}" required>
+            </div>
+            <div class="login-button" style="justify-content: center">
+                <button type="submit" class="btn btn-primary">Update Profile</button>
+            </div>
+        </form>
+    </div>
+</div>
+    
+    {% comment %} <h2>Digital Wallet</h2>
+    {% if user.digital_wallet_set.exists %}
+        {% for wallet in user.digital_wallet_set.all %}
+            <div class="wallet">
+                <p><strong>Card Name:</strong> {{ wallet.card_name }}</p>
+                <p><strong>Card Number:</strong> **** **** **** {{ wallet.card_no|slice:":-4" }}</p>
+                <p><strong>Expiration Date:</strong> {{ wallet.exp_date }}</p>
+                <p><strong>Balance:</strong> ${{ wallet.c_balance }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No digital wallet information available.</p>
+    {% endif %} {% endcomment %}
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'codextr/s-i-profile.js' %}"></script>
+{% endblock %}

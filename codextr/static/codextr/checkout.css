@@ -1,0 +1,42 @@
+/* Basic Styling - Adjust to your preferences */
+body {
+  font-family: sans-serif;
+}
+
+.checkout-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.checkout-section, 
+.summary-section {
+  width: 48%;
+}
+
+input[type="text"], 
+select,
+.checkout-button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.checkout-button {
+  background-color: #673ab7; /* Example color */
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
